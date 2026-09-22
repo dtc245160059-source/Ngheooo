@@ -1,49 +1,43 @@
-# Thực hành: Tạo CSDL Quản lý Sinh viên
+# [Bài tập] Xây dựng cơ sở dữ liệu Quản lý bán hàng
 
 ## 1. Mô tả dự án
-Thực hiện tạo cơ sở dữ liệu `QuanLySinhVien` và các bảng dữ liệu với đầy đủ các ràng buộc toàn vẹn (Khóa chính, Khóa ngoại, Unique, Default, Check, Auto Increment).
+Dự án khởi tạo cơ sở dữ liệu `QuanLyBanHang` gồm 4 bảng chính (`Customer`, `Order`, `Product`, `OrderDetail`) nhằm phục vụ việc quản lý khách hàng, hóa đơn và chi tiết mua hàng.
 
-## 2. Sơ đồ ERD
+## 2. Sơ đồ ERD (Mermaid)
 ```mermaid
 erDiagram
-    Class {
-        int ClassID PK
-        string ClassName
-        datetime StartDate
-        bit Status
+    Customer {
+        int cID PK
+        string cName
+        tinyint cAge
     }
 
-    Student {
-        int StudentId PK
-        string StudentName
-        string Address
-        string Phone
-        bit Status
-        int ClassId FK
+    Order {
+        int oID PK
+        int cID FK
+        datetime oDate
+        int oTotalPrice
     }
 
-    Subject {
-        int SubId PK
-        string SubName
-        tinyint Credit
-        bit Status
+    Product {
+        int pID PK
+        string pName
+        int pPrice
     }
 
-    Mark {
-        int MarkId PK
-        int SubId FK
-        int StudentId FK
-        float Mark
-        tinyint ExamTimes
+    OrderDetail {
+        int oID PK, FK
+        int pID PK, FK
+        int odQTY
     }
 
-    Class ||--o{ Student : "chua"
-    Student ||--o{ Mark : "co"
-    Subject ||--o{ Mark : "co"
+    Customer ||--o{ Order : "dat_hang"
+    Order ||--|{ OrderDetail : "bao_gom"
+    Product ||--o{ OrderDetail : "nam_trong"
 ```
 
-## 3. Cấu trúc bảng và Ràng buộc
-- **Class**: `ClassID` (PK, Auto Inc), `ClassName` (NOT NULL), `StartDate` (NOT NULL).
-- **Student**: `StudentId` (PK, Auto Inc), `StudentName` (NOT NULL), `ClassId` (FK references Class).
-- **Subject**: `SubId` (PK, Auto Inc), `SubName` (NOT NULL), `Credit` (DEFAULT 1, CHECK >= 1), `Status` (DEFAULT 1).
-- **Mark**: `MarkId` (PK, Auto Inc), `SubId` (FK), `StudentId` (FK), `Mark` (DEFAULT 0, CHECK 0-100), `ExamTimes` (DEFAULT 1), `UNIQUE (SubId, StudentId)`.
+## 3. Cấu trúc bảng & Các ràng buộc
+- **Customer**: `cID` (PK, Auto Inc), `cName` (NOT NULL), `cAge` (CHECK > 0).
+- **Order**: `oID` (PK, Auto Inc), `cID` (FK references Customer), `oDate` (NOT NULL), `oTotalPrice`.
+- **Product**: `pID` (PK, Auto Inc), `pName` (NOT NULL), `pPrice` (CHECK >= 0).
+- **OrderDetail**: Khóa chính hợp phần `(oID, pID)` đóng vai trò là FK tham chiếu tới `Order` và `Product`, `odQTY` (CHECK > 0).
