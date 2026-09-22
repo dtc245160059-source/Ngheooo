@@ -6,7 +6,7 @@
 CREATE DATABASE IF NOT EXISTS QuanLyBanHang;
 USE QuanLyBanHang;
 
--- 2. TẠO BẢNG VÀ RÀNG BUỘC (DDL)
+-- 2. TẠO CẤU TRÚC BẢNG (DDL)
 DROP TABLE IF EXISTS OrderDetail;
 DROP TABLE IF EXISTS `Order`;
 DROP TABLE IF EXISTS Product;
@@ -89,8 +89,8 @@ FROM Customer c
 LEFT JOIN `Order` o ON c.cID = o.cID
 WHERE o.oID IS NULL;
 
--- Yêu cầu 4: Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn 
--- (Giá trị hóa đơn = SUM(odQTY * pPrice))
+-- Yêu cầu 4: Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn
+-- (Giá một hóa đơn được tính bằng SUM(odQTY * pPrice))
 SELECT 
     o.oID, 
     o.oDate, 
