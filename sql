@@ -1,42 +1,36 @@
--- 1. Tạo cơ sở dữ liệu QuanLySinhVien
-CREATE DATABASE IF NOT EXISTS QuanLySinhVien;
-USE QuanLySinhVien;
+-- 1. Tạo cơ sở dữ liệu QuanLyBanHang
+CREATE DATABASE IF NOT EXISTS QuanLyBanHang;
+USE QuanLyBanHang;
 
--- 2. Tạo bảng Class (Lớp học)
-CREATE TABLE Class (
-    ClassID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    ClassName VARCHAR(60) NOT NULL,
-    StartDate DATETIME NOT NULL,
-    Status BIT
+-- 2. Tạo bảng Customer (Khách hàng)
+CREATE TABLE Customer (
+    cID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cName VARCHAR(50) NOT NULL,
+    cAge TINYINT CHECK (cAge > 0)
 );
 
--- 3. Tạo bảng Student (Học viên)
-CREATE TABLE Student (
-    StudentId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    StudentName VARCHAR(30) NOT NULL,
-    Address VARCHAR(50),
-    Phone VARCHAR(20),
-    Status BIT,
-    ClassId INT NOT NULL,
-    FOREIGN KEY (ClassId) REFERENCES Class (ClassID)
+-- 3. Tạo bảng Order (Hóa đơn)
+CREATE TABLE `Order` (
+    oID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cID INT NOT NULL,
+    oDate DATETIME NOT NULL,
+    oTotalPrice INT DEFAULT NULL,
+    FOREIGN KEY (cID) REFERENCES Customer(cID)
 );
 
--- 4. Tạo bảng Subject (Môn học)
-CREATE TABLE Subject (
-    SubId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubName VARCHAR(30) NOT NULL,
-    Credit TINYINT NOT NULL DEFAULT 1 CHECK (Credit >= 1),
-    Status BIT DEFAULT 1
+-- 4. Tạo bảng Product (Sản phẩm)
+CREATE TABLE Product (
+    pID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    pName VARCHAR(100) NOT NULL,
+    pPrice INT CHECK (pPrice >= 0)
 );
 
--- 5. Tạo bảng Mark (Điểm số)
-CREATE TABLE Mark (
-    MarkId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    SubId INT NOT NULL,
-    StudentId INT NOT NULL,
-    Mark FLOAT DEFAULT 0 CHECK (Mark BETWEEN 0 AND 100),
-    ExamTimes TINYINT DEFAULT 1,
-    UNIQUE (SubId, StudentId),
-    FOREIGN KEY (SubId) REFERENCES Subject (SubId),
-    FOREIGN KEY (StudentId) REFERENCES Student (StudentId)
+-- 5. Tạo bảng OrderDetail (Chi tiết hóa đơn)
+CREATE TABLE OrderDetail (
+    oID INT NOT NULL,
+    pID INT NOT NULL,
+    odQTY INT CHECK (odQTY > 0),
+    PRIMARY KEY (oID, pID),
+    FOREIGN KEY (oID) REFERENCES `Order`(oID),
+    FOREIGN KEY (pID) REFERENCES Product(pID)
 );
