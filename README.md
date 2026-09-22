@@ -3,7 +3,7 @@ erDiagram
         string MaDV PK
         string TenDV
         string DiaChi
-        string DienThai
+        string DienThoai
     }
 
     NGUOI_DAT {
@@ -18,13 +18,6 @@ erDiagram
         string MaDV FK
     }
 
-    HANG {
-        string MaHang PK
-        string TenHang
-        string DvTinh
-        string MoTaHang
-    }
-
     NGUOI_GIAO {
         string MaSoNG PK
         string HoTenNG
@@ -35,24 +28,58 @@ erDiagram
         string TenNoiGiao
     }
 
-    DAT_HANG {
-        string SoDH
+    HANG {
+        string MaHang PK
+        string TenHang
+        string DvTinh
+        string MoTaHang
+    }
+
+    DON_DAT_HANG {
+        string SoDH PK
         date NgayDat
+        string MaSoND FK
+        string MaDV FK
+    }
+
+    CHI_TIET_DAT_HANG {
+        string SoDH PK, FK
+        string MaHang PK, FK
         int SoLuong
     }
 
-    GIAO_HANG {
-        string SoPG
+    PHIEU_GIAO_HANG {
+        string SoPG PK
         date NgayGiao
+        string SoDH FK
+        string MaSoNG FK
+        string MaSoNN FK
+        string MaSoDDG FK
+    }
+
+    CHI_TIET_GIAO_HANG {
+        string SoPG PK, FK
+        string MaHang PK, FK
         int SoLuong
         double DonGia
     }
 
-    DV_KHACH ||--o{ NGUOI_DAT : "Thuoc 1"
-    DV_KHACH ||--o{ NGUOI_NHAN : "Thuoc 2"
-    NGUOI_DAT ||--o{ DAT_HANG : "Thuc hien"
-    HANG ||--o{ DAT_HANG : "Duoc dat"
-    NGUOI_GIAO ||--o{ GIAO_HANG : "Phu trách"
-    NGUOI_NHAN ||--o{ GIAO_HANG : "Nhan hang"
-    NOI_GIAO ||--o{ GIAO_HANG : "Giao tai"
-    HANG ||--o{ GIAO_HANG : "Duoc giao"
+    %% Mối quan hệ Đơn vị khách
+    DV_KHACH ||--o{ NGUOI_DAT : "thuoc"
+    DV_KHACH ||--o{ NGUOI_NHAN : "thuoc"
+    DV_KHACH ||--o{ DON_DAT_HANG : "dat"
+
+    %% Mối quan hệ Đặt hàng
+    NGUOI_DAT ||--o{ DON_DAT_HANG : "lap"
+    DON_DAT_HANG ||--|{ CHI_TIET_DAT_HANG : "co"
+    HANG ||--o{ CHI_TIET_DAT_HANG : "duoc_dat"
+
+    %% Mối quan hệ giữa Đơn đặt hàng và Phiếu giao hàng
+    DON_DAT_HANG ||--o{ PHIEU_GIAO_HANG : "sinh_ra"
+
+    %% Mối quan hệ Giao hàng
+    NGUOI_GIAO ||--o{ PHIEU_GIAO_HANG : "giao"
+    NGUOI_NHAN ||--o{ PHIEU_GIAO_HANG : "nhan"
+    NOI_GIAO ||--o{ PHIEU_GIAO_HANG : "giao_tai"
+    PHIEU_GIAO_HANG ||--|{ CHI_TIET_GIAO_HANG : "co"
+    HANG ||--o{ CHI_TIET_GIAO_HANG : "duoc_giao"
