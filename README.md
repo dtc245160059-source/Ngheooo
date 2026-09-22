@@ -1,85 +1,49 @@
+# Thực hành: Tạo CSDL Quản lý Sinh viên
+
+## 1. Mô tả dự án
+Thực hiện tạo cơ sở dữ liệu `QuanLySinhVien` và các bảng dữ liệu với đầy đủ các ràng buộc toàn vẹn (Khóa chính, Khóa ngoại, Unique, Default, Check, Auto Increment).
+
+## 2. Sơ đồ ERD
+```mermaid
 erDiagram
-    DV_KHACH {
-        string MaDV PK
-        string TenDV
-        string DiaChi
-        string DienThoai
+    Class {
+        int ClassID PK
+        string ClassName
+        datetime StartDate
+        bit Status
     }
 
-    NGUOI_DAT {
-        string MaSoND PK
-        string HoTenND
-        string MaDV FK
+    Student {
+        int StudentId PK
+        string StudentName
+        string Address
+        string Phone
+        bit Status
+        int ClassId FK
     }
 
-    NGUOI_NHAN {
-        string MaSoNN PK
-        string HoTenNN
-        string MaDV FK
+    Subject {
+        int SubId PK
+        string SubName
+        tinyint Credit
+        bit Status
     }
 
-    NGUOI_GIAO {
-        string MaSoNG PK
-        string HoTenNG
+    Mark {
+        int MarkId PK
+        int SubId FK
+        int StudentId FK
+        float Mark
+        tinyint ExamTimes
     }
 
-    NOI_GIAO {
-        string MaSoDDG PK
-        string TenNoiGiao
-    }
+    Class ||--o{ Student : "chua"
+    Student ||--o{ Mark : "co"
+    Subject ||--o{ Mark : "co"
+```
 
-    HANG {
-        string MaHang PK
-        string TenHang
-        string DvTinh
-        string MoTaHang
-    }
-
-    DON_DAT_HANG {
-        string SoDH PK
-        date NgayDat
-        string MaSoND FK
-        string MaDV FK
-    }
-
-    CHI_TIET_DAT_HANG {
-        string SoDH PK, FK
-        string MaHang PK, FK
-        int SoLuong
-    }
-
-    PHIEU_GIAO_HANG {
-        string SoPG PK
-        date NgayGiao
-        string SoDH FK
-        string MaSoNG FK
-        string MaSoNN FK
-        string MaSoDDG FK
-    }
-
-    CHI_TIET_GIAO_HANG {
-        string SoPG PK, FK
-        string MaHang PK, FK
-        int SoLuong
-        double DonGia
-    }
-
-    %% Mối quan hệ Đơn vị khách
-    DV_KHACH ||--o{ NGUOI_DAT : "thuoc"
-    DV_KHACH ||--o{ NGUOI_NHAN : "thuoc"
-    DV_KHACH ||--o{ DON_DAT_HANG : "dat"
-
-    %% Mối quan hệ Đặt hàng
-    NGUOI_DAT ||--o{ DON_DAT_HANG : "lap"
-    DON_DAT_HANG ||--|{ CHI_TIET_DAT_HANG : "co"
-    HANG ||--o{ CHI_TIET_DAT_HANG : "duoc_dat"
-
-    %% Mối quan hệ giữa Đơn đặt hàng và Phiếu giao hàng
-    DON_DAT_HANG ||--o{ PHIEU_GIAO_HANG : "sinh_ra"
-
-    %% Mối quan hệ Giao hàng
-    NGUOI_GIAO ||--o{ PHIEU_GIAO_HANG : "giao"
-    NGUOI_NHAN ||--o{ PHIEU_GIAO_HANG : "nhan"
-    NOI_GIAO ||--o{ PHIEU_GIAO_HANG : "giao_tai"
-    PHIEU_GIAO_HANG ||--|{ CHI_TIET_GIAO_HANG : "co"
-    HANG ||--o{ CHI_TIET_GIAO_HANG : "duoc_giao"
+## 3. Cấu trúc bảng và Ràng buộc
+- **Class**: `ClassID` (PK, Auto Inc), `ClassName` (NOT NULL), `StartDate` (NOT NULL).
+- **Student**: `StudentId` (PK, Auto Inc), `StudentName` (NOT NULL), `ClassId` (FK references Class).
+- **Subject**: `SubId` (PK, Auto Inc), `SubName` (NOT NULL), `Credit` (DEFAULT 1, CHECK >= 1), `Status` (DEFAULT 1).
+- **Mark**: `MarkId` (PK, Auto Inc), `SubId` (FK), `StudentId` (FK), `Mark` (DEFAULT 0, CHECK 0-100), `ExamTimes` (DEFAULT 1), `UNIQUE (SubId, StudentId)`.
