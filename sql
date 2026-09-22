@@ -1,4 +1,4 @@
--- 1. Tạo và chọn cơ sở dữ liệu QuanLySinhVien
+-- 1. Tạo cơ sở dữ liệu QuanLySinhVien
 CREATE DATABASE IF NOT EXISTS QuanLySinhVien;
 USE QuanLySinhVien;
 
