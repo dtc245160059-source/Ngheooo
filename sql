@@ -1,29 +1,42 @@
--- 1. Sử dụng cơ sở dữ liệu QuanLySinhVien
+-- 1. Tạo và chọn cơ sở dữ liệu QuanLySinhVien
+CREATE DATABASE IF NOT EXISTS QuanLySinhVien;
 USE QuanLySinhVien;
 
--- 2. Hiển thị danh sách tất cả các học viên
-SELECT * 
-FROM Student;
+-- 2. Tạo bảng Class (Lớp học)
+CREATE TABLE Class (
+    ClassID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ClassName VARCHAR(60) NOT NULL,
+    StartDate DATETIME NOT NULL,
+    Status BIT
+);
 
--- 3. Hiển thị danh sách các học viên đang theo học (Status = true)
-SELECT * 
-FROM Student 
-WHERE Status = true;
+-- 3. Tạo bảng Student (Học viên)
+CREATE TABLE Student (
+    StudentId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    StudentName VARCHAR(30) NOT NULL,
+    Address VARCHAR(50),
+    Phone VARCHAR(20),
+    Status BIT,
+    ClassId INT NOT NULL,
+    FOREIGN KEY (ClassId) REFERENCES Class (ClassID)
+);
 
--- 4. Hiển thị danh sách các môn học có thời gian học/tín chỉ nhỏ hơn 10
-SELECT * 
-FROM Subject 
-WHERE Credit < 10;
+-- 4. Tạo bảng Subject (Môn học)
+CREATE TABLE Subject (
+    SubId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    SubName VARCHAR(30) NOT NULL,
+    Credit TINYINT NOT NULL DEFAULT 1 CHECK (Credit >= 1),
+    Status BIT DEFAULT 1
+);
 
--- 5. Hiển thị danh sách học viên lớp A1
-SELECT S.StudentId, S.StudentName, C.ClassName
-FROM Student S 
-JOIN Class C ON S.ClassId = C.ClassID
-WHERE C.ClassName = 'A1';
-
--- 6. Hiển thị điểm môn 'CF' của các học viên
-SELECT S.StudentId, S.StudentName, Sub.SubName, M.Mark
-FROM Student S 
-JOIN Mark M ON S.StudentId = M.StudentId 
-JOIN Subject Sub ON M.SubId = Sub.SubId
-WHERE Sub.SubName = 'CF';
+-- 5. Tạo bảng Mark (Điểm số)
+CREATE TABLE Mark (
+    MarkId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    SubId INT NOT NULL,
+    StudentId INT NOT NULL,
+    Mark FLOAT DEFAULT 0 CHECK (Mark BETWEEN 0 AND 100),
+    ExamTimes TINYINT DEFAULT 1,
+    UNIQUE (SubId, StudentId),
+    FOREIGN KEY (SubId) REFERENCES Subject (SubId),
+    FOREIGN KEY (StudentId) REFERENCES Student (StudentId)
+);
