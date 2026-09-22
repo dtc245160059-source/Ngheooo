@@ -40,4 +40,4 @@ erDiagram
 - **Customer**: `cID` (PK, Auto Inc), `cName` (NOT NULL), `cAge` (CHECK > 0).
 - **Order**: `oID` (PK, Auto Inc), `cID` (FK references Customer), `oDate` (NOT NULL), `oTotalPrice`.
 - **Product**: `pID` (PK, Auto Inc), `pName` (NOT NULL), `pPrice` (CHECK >= 0).
-- **OrderDetail**: Khóa chính hợp phần `(oID, pID)` đóng vai trò là FK tham chiếu tới `Order` và `Product`, `odQTY` (CHECK > 0).
+- **OrderDetail**: Khóa chính hợp phần `(oID, pID)` đồng thời là FK tham chiếu tới `Order` và `Product`, `odQTY` (CHECK > 0).
