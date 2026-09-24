@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhúng CSS vào trang HTML</title>
+
+    <!-- [Phần 3] Liên kết file CSS bên ngoài (External) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- [Phần 2] Khai báo CSS nội bộ (Internal) -->
+    <style>
+        .internal-heading {
+            color: purple;
+        }
+        .internal-paragraph {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PHẦN 1: INLINE CSS (Sử dụng thuộc tính style trực tiếp) -->
+    <h2>Phần 1: Inline CSS</h2>
+    <h1 style="color: blue;">Tiêu đề bài viết (Inline)</h1>
+    <p style="color: green;">Đoạn văn bản minh họa (Inline).</p>
+
+    <hr>
+
+    <!-- PHẦN 2: INTERNAL CSS (Sử dụng thẻ <style> ở phần <head>) -->
+    <h2>Phần 2: Internal CSS</h2>
+    <h1 class="internal-heading">Tiêu đề bài viết (Internal)</h1>
+    <p class="internal-paragraph">Đoạn văn bản minh họa (Internal).</p>
+
+    <hr>
+
+    <!-- PHẦN 3: EXTERNAL CSS (Gọi style từ file style.css) -->
+    <h2>Phần 3: External CSS</h2>
+    <h1 class="external-heading">Tiêu đề bài viết (External)</h1>
+    <p class="external-paragraph">Đoạn văn bản minh họa (External).</p>
+
+</body>
+</html>
