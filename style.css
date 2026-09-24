@@ -1,47 +1,47 @@
-/* 1. Thiết lập phông chữ chung cho trang */
+/* Thiết lập phông chữ chung */
 body {
     font-family: Arial, sans-serif;
 }
 
-/* 2. Reset padding và margin cho menu để không bị xê dịch */
+/* Reset margin và padding cho menu */
 #menu, #menu ul, #menu li {
     padding: 0;
     margin: 0;
 }
 
-/* 3. Định dạng kích thước, màu nền và vị trí cho các mục menu (li) */
+/* Định dạng các mục menu */
 #menu li {
-    list-style: none;             /* Bỏ dấu chấm đầu dòng */
-    position: relative;           /* Làm mốc tọa độ cho menu con hiển thị bên cạnh */
-    width: 100px;                 /* Chiều rộng nội dung */
-    height: 30px;                /* Chiều cao */
-    padding: 0 20px;              /* Khoảng cách đệm trái/phải (Tổng chiều rộng 1 item = 100 + 20 + 20 = 140px) */
-    background-color: black;      /* Màu nền đen ban đầu */
-    line-height: 30px;            /* Căn giữa chữ theo chiều dọc */
-    cursor: pointer;              /* Đổi con trỏ chuột thành hình bàn tay */
+    list-style: none;
+    position: relative;
+    width: 100px;
+    height: 30px;
+    padding: 0 20px;
+    background-color: black;
+    line-height: 30px;
+    cursor: pointer;
 }
 
-/* 4. Định dạng màu sắc và gạch chân cho thẻ liên kết (a) */
+/* Định dạng liên kết thẻ <a> */
 #menu li a {
-    text-decoration: none;        /* Bỏ gạch chân dưới chân chữ */
-    color: white;                 /* Màu chữ trắng */
-    display: block;               /* Cho phép nhấn vào toàn bộ diện tích thẻ li */
+    text-decoration: none;
+    color: white;
+    display: block;
 }
 
-/* 5. Hiệu ứng khi rê chuột (hover) vào từng item menu */
+/* Hiệu ứng di chuột đổi màu nền */
 #menu li:hover {
-    background-color: red;        /* Chuyển màu nền sang màu đỏ */
+    background-color: red;
 }
 
-/* 6. Định dạng vị trí và ẩn các menu con (ul nằm trong li) */
+/* Ẩn menu con và đặt vị trí xuất hiện bên phải */
 #menu ul ul {
-    position: absolute;           /* Định vị tuyệt đối so với thẻ li cha */
-    top: 0;                       /* Nằm ngang hàng với mục cha */
-    left: 140px;                  /* Đẩy menu con sang bên phải (bằng tổng chiều rộng item cha là 140px) */
-    visibility: hidden;           /* Mặc định ẩn menu con đi */
+    position: absolute;
+    top: 0;
+    left: 140px;
+    visibility: hidden;
 }
 
-/* 7. Hiển thị menu con khi rê chuột (hover) vào thẻ li chứa nó */
+/* Hiển thị menu con khi rê chuột vào mục cha */
 #menu ul li:hover ul {
-    visibility: visible;          /* Hiển thị lại menu con */
+    visibility: visible;
 }
