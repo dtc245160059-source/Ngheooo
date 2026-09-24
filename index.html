@@ -1,82 +1,39 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đọc Truyện: Dế Mèn Phiêu Lưu Ký</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tạo Menu Dọc</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="story-container">
-        
-        <!-- BƯỚC 4: Ảnh truyện đặt ở đầu trang -->
-        <div class="story-banner">
-            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1000&q=80" alt="Ảnh bìa truyện">
-        </div>
+    <h3>ACCP i10</h3>
 
-        <h1 class="story-title">Dế Mèn Phiêu Lưu Ký</h1>
-        <p class="story-author">Tác giả: Tô Hoài</p>
-
-        <!-- BƯỚC 1, BƯỚC 3 & BƯỚC 5: Mục lục truyện dùng thẻ <h5> và tạo liên kết (anchor link) -->
-        <div class="table-of-contents">
-            <h2>Mục Lục Truyện</h2>
-            <ul>
-                <li>
-                    <a href="#chuong-1">
-                        <h5>Chương 1: Tôi mẫn cảm và khỏe mạnh</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="#chuong-2">
-                        <h5>Chương 2: Bài học đường đời đầu tiên</h5>
-                    </a>
-                </li>
-                <li>
-                    <a href="#chuong-3">
-                        <h5>Chương 3: Bắt đầu cuộc phiêu lưu</h5>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <hr class="divider">
-
-        <!-- BƯỚC 2: Nội dung ứng với từng mục lục (Sử dụng id tương ứng với href ở mục lục) -->
-        <div class="story-content">
-            
-            <section id="chuong-1" class="chapter">
-                <h3>Chương 1: Tôi mẫn cảm và khỏe mạnh</h3>
-                <p>
-                    Bởi tôi ăn uống độ lượng và làm việc có chừng mực nên tôi chóng lớn lắm. Chẳng bao lâu tôi đã trở thành một gã Dế Mèn thanh niên cường tráng. Đôi càng tôi mẫm bóng. Những cái vuốt ở chân, ở khoeo cứ cứng dần và nhọn hoắt.
-                </p>
-                <p>
-                    Mỗi khi tôi vũ lên, tiếng kêu phành phạch giòn giã. Hai cái răng đen nhánh lúc nào cũng băm băm như hai lưỡi liềm máy làm việc. Tôi rất hãnh diện với bà con về cặp râu giài và uốn cong một vẻ rất hùng dũng.
-                </p>
-            </section>
-
-            <section id="chuong-2" class="chapter">
-                <h3>Chương 2: Bài học đường đời đầu tiên</h3>
-                <p>
-                    Bên xóm hàng xóm có nhà chú Dế Choắt. Choắt là tên tôi đặt cho nó một cách chế giễu và trêu chọc như thế. Chú mình gầy gò và dài lêu khêu như một gã nghiện thuốc phiện. Đã thanh niên rồi mà cánh chỉ ngắn củn đến giữa lưng.
-                </p>
-                <p>
-                    Một hôm, tôi tợn xược trêu chị Cốc. Chị Cốc nổi giận và Dế Choắt xấu số đã phải chịu hậu quả đắng ngắt từ trò đùa bốc đồng của tôi. Trước khi qua đời, Choắt bảo tôi: "Ở đời mà có tính hung hăng bốc đồng, làm mà không biết suy nghĩ, sớm muộn rồi cũng mang họa vào mình đấy". Đó là bài học đường đời đầu tiên của tôi.
-                </p>
-            </section>
-
-            <section id="chuong-3" class="chapter">
-                <h3>Chương 3: Bắt đầu cuộc phiêu lưu</h3>
-                <p>
-                    Sau cái chết thảm thương của Dế Choắt, tôi ân hận lắm. Tôi đứng trước mộ Choắt mà thề rằng từ nay về sau không bao giờ hung hăng, bốc đồng nữa. Tôi chôn cất Choắt vào một vùng cỏ tươi tốt.
-                </p>
-                <p>
-                    Mùa xuân đến, cây cỏ xanh tươi, tôi quyết định cất bước đi phiêu lưu khắp bốn phương trời để học hỏi, mở rộng tầm mắt và tìm kiếm những người bạn tri kỷ trên mọi nẻo đường...
-                </p>
-            </section>
-
-        </div>
-
+    <div id="menu">
+        <ul>
+            <li>
+                <a href="#">Sem 1</a>
+                <ul>
+                    <li><a href="#">Computing Fundamental</a></li>
+                    <li><a href="#">C Programming</a></li>
+                    <li><a href="#">Building Dynamic Website</a></li>
+                    <li><a href="#">MS Transact-SQL</a></li>
+                    <li><a href="#">Project</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Sem 2</a>
+                <ul>
+                    <li><a href="#">Cloud Computing</a></li>
+                    <li><a href="#">APJ - I</a></li>
+                    <li><a href="#">APJ - II</a></li>
+                    <li><a href="#">APJ - III</a></li>
+                    <li><a href="#">eProject</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Sem 3</a></li>
+            <li><a href="#">Sem 4</a></li>
+        </ul>
     </div>
 
 </body>
