@@ -2,39 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tạo Menu Dọc Dropdown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monday Times</title>
+    <!-- Thẻ link liên kết chính xác tới file styles.css -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h3>ACCP i10</h3>
+    <!-- 1. Header: Đầu trang chứa tiêu đề trang web -->
+    <header>
+        <h1>Monday Times</h1>
+    </header>
 
-    <div id="menu">
+    <!-- 2. Nav: Thanh điều hướng (Menu) -->
+    <nav>
         <ul>
-            <li>
-                <a href="#">Sem 1</a>
-                <ul>
-                    <li><a href="#">Computing Fundamental</a></li>
-                    <li><a href="#">C Programming</a></li>
-                    <li><a href="#">Building Dynamic Website</a></li>
-                    <li><a href="#">MS Transact-SQL</a></li>
-                    <li><a href="#">Project</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">Sem 2</a>
-                <ul>
-                    <li><a href="#">Cloud Computing</a></li>
-                    <li><a href="#">APJ - I</a></li>
-                    <li><a href="#">APJ - II</a></li>
-                    <li><a href="#">APJ - III</a></li>
-                    <li><a href="#">eProject</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Sem 3</a></li>
-            <li><a href="#">Sem 4</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Weather</a></li>
         </ul>
+    </nav>
+
+    <!-- Khung chứa phần nội dung chính và cột bên -->
+    <div class="main-container">
+        
+        <!-- 3. Section: Khu vực chứa các bài viết tin tức -->
+        <section>
+            <h2>News Section</h2>
+
+            <!-- 4. Article: Bài báo tin tức thứ nhất -->
+            <article>
+                <h3>News Article</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum est nibh, et consectetur tortor feugiat at.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum est nibh, et consectetur tortor feugiat at.</p>
+            </article>
+
+            <!-- Article: Bài báo tin tức thứ hai -->
+            <article>
+                <h3>News Article</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum est nibh, et consectetur tortor feugiat at.</p>
+            </article>
+        </section>
+
+        <!-- 5. Aside: Cột phụ bên cạnh (Sidebar) -->
+        <aside>
+            <h2>Sub Section</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in porta lorem. Morbi condimentum est nibh, et consectetur tortor feugiat at.</p>
+        </aside>
+
     </div>
+
+    <!-- 6. Footer: Chân trang -->
+    <footer>
+        <p>&copy; 2026 Monday Times. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
