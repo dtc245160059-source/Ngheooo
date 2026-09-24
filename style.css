@@ -1,112 +1,47 @@
-/* Hiệu ứng cuộn mượt khi click vào mục lục */
-html {
-    scroll-behavior: smooth;
-}
-
+/* 1. Thiết lập phông chữ chung cho trang */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f4f6f9;
-    color: #333333;
-    line-height: 1.8;
-    margin: 0;
-    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-/* Khung chứa toàn bộ trang đọc truyện */
-.story-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-/* BƯỚC 4: Định dạng ảnh truyện ở đầu trang */
-.story-banner img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.story-title {
-    text-align: center;
-    color: #1a5276;
-    font-size: 28px;
-    margin-top: 20px;
-    margin-bottom: 5px;
-}
-
-.story-author {
-    text-align: center;
-    color: #7f8c8d;
-    font-style: italic;
-    margin-bottom: 25px;
-}
-
-/* BƯỚC 1 & BƯỚC 5: Khung mục lục chứa các thẻ <h5> */
-.table-of-contents {
-    background-color: #ebf5fb;
-    border-left: 5px solid #2980b9;
-    padding: 15px 25px;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 30px;
-}
-
-.table-of-contents h2 {
-    margin-top: 0;
-    font-size: 20px;
-    color: #2c3e50;
-}
-
-.table-of-contents ul {
-    list-style-type: square;
-    padding-left: 20px;
+/* 2. Reset padding và margin cho menu để không bị xê dịch */
+#menu, #menu ul, #menu li {
+    padding: 0;
     margin: 0;
 }
 
-/* BƯỚC 3: Định dạng liên kết mục lục */
-.table-of-contents a {
-    text-decoration: none;
-    color: #2980b9;
-    transition: color 0.2s ease;
+/* 3. Định dạng kích thước, màu nền và vị trí cho các mục menu (li) */
+#menu li {
+    list-style: none;             /* Bỏ dấu chấm đầu dòng */
+    position: relative;           /* Làm mốc tọa độ cho menu con hiển thị bên cạnh */
+    width: 100px;                 /* Chiều rộng nội dung */
+    height: 30px;                /* Chiều cao */
+    padding: 0 20px;              /* Khoảng cách đệm trái/phải (Tổng chiều rộng 1 item = 100 + 20 + 20 = 140px) */
+    background-color: black;      /* Màu nền đen ban đầu */
+    line-height: 30px;            /* Căn giữa chữ theo chiều dọc */
+    cursor: pointer;              /* Đổi con trỏ chuột thành hình bàn tay */
 }
 
-.table-of-contents a:hover {
-    color: #e74c3c;
+/* 4. Định dạng màu sắc và gạch chân cho thẻ liên kết (a) */
+#menu li a {
+    text-decoration: none;        /* Bỏ gạch chân dưới chân chữ */
+    color: white;                 /* Màu chữ trắng */
+    display: block;               /* Cho phép nhấn vào toàn bộ diện tích thẻ li */
 }
 
-/* BƯỚC 5: Định dạng thuộc tính cho thẻ <h5> trong mục lục */
-.table-of-contents h5 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 6px 0;
-    display: inline-block;
+/* 5. Hiệu ứng khi rê chuột (hover) vào từng item menu */
+#menu li:hover {
+    background-color: red;        /* Chuyển màu nền sang màu đỏ */
 }
 
-.divider {
-    border: none;
-    border-top: 1px solid #e0e0e0;
-    margin: 30px 0;
+/* 6. Định dạng vị trí và ẩn các menu con (ul nằm trong li) */
+#menu ul ul {
+    position: absolute;           /* Định vị tuyệt đối so với thẻ li cha */
+    top: 0;                       /* Nằm ngang hàng với mục cha */
+    left: 140px;                  /* Đẩy menu con sang bên phải (bằng tổng chiều rộng item cha là 140px) */
+    visibility: hidden;           /* Mặc định ẩn menu con đi */
 }
 
-/* BƯỚC 2: Định dạng nội dung từng chương truyện */
-.chapter {
-    margin-bottom: 40px;
-    padding-top: 10px;
-}
-
-.chapter h3 {
-    color: #d35400;
-    border-bottom: 2px solid #e67e22;
-    padding-bottom: 6px;
-    font-size: 22px;
-}
-
-.chapter p {
-    text-align: justify;
-    text-indent: 30px; /* Thụt lùi đầu dòng cho văn bản */
-    margin-bottom: 15px;
-    font-size: 16.5px;
+/* 7. Hiển thị menu con khi rê chuột (hover) vào thẻ li chứa nó */
+#menu ul li:hover ul {
+    visibility: visible;          /* Hiển thị lại menu con */
 }
