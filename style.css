@@ -1,63 +1,77 @@
+/* Reset căn bản */
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    color: #000000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2b2b2b;
+    background-color: #fdfdfd;
 }
 
-.gallery-row {
+/* ==========================================================================
+   1. AUTHOR SECTION (Flexbox 1D - Căn giữa dọc và tự co giãn)
+   ========================================================================== */
+.author-section {
     display: flex;
-    flex-wrap: wrap;
-    margin: 0 -4px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Rớt dòng mượt mà trên di động */
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
 }
 
-/* Thẻ chứa hình ảnh & phần mô tả */
-.gallery-card {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    transition: border-color 0.2s ease;
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.gallery-card:hover {
-    border: 1px solid #777;
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.gallery-card img {
+/* ==========================================================================
+   2. MOSAIC GALLERY (CSS Grid 2D - Loại bỏ absolute positioning)
+   ========================================================================== */
+.mosaic-gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Cột to 2 phần, cột nhỏ 1 phần */
+    grid-template-rows: repeat(2, 200px); /* 2 hàng, mỗi hàng 200px */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mosaic-item img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover; /* Giữ tỉ lệ hình ảnh không bị méo */
+    border-radius: 8px;
 }
 
-.desc {
-    padding: 15px;
-    text-align: center;
-    font-size: 14px;
+/* Ảnh chính chiếm trọn 2 hàng bên trái */
+.photo-main {
+    grid-row: span 2;
 }
 
-/* 1. Mặc định (Màn hình lớn hơn 700px): Hiển thị 4 ảnh / 1 dòng (25% chiều rộng mỗi cột) */
-.responsive-col {
-    padding: 0 4px;
-    width: 25%;
-    margin-bottom: 8px;
-}
-
-/* 2. Media Query (Màn hình nhỏ hơn hoặc bằng 700px): Hiển thị 2 ảnh / 1 dòng (50% chiều rộng) */
-@media only screen and (max-width: 700px) {
-    .responsive-col {
-        width: 50%;
+/* Responsive Breakpoint cho Mosaic Gallery */
+@media (max-width: 768px) {
+    .mosaic-gallery {
+        grid-template-columns: 1fr; /* Chuyển về 1 cột duy nhất */
+        grid-template-rows: auto;
     }
-}
 
-/* 3. Media Query (Màn hình nhỏ hơn hoặc bằng 500px): Hiển thị 1 ảnh / 1 dòng (100% chiều rộng) */
-@media only screen and (max-width: 500px) {
-    .responsive-col {
-        width: 100%;
+    .photo-main {
+        grid-row: span 1; /* Reset về 1 hàng */
+        height: 280px;
     }
-}
 
-.note-text {
-    font-size: 14px;
-    line-height: 1.5;
+    .photo-sub-1, .photo-sub-2 {
+        height: 180px;
+    }
 }
