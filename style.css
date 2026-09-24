@@ -1,47 +1,117 @@
-/* Thiết lập phông chữ chung */
+/* Thiết lập quy tắc tính toán kích thước khung chung */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-}
-
-/* Reset margin và padding cho menu */
-#menu, #menu ul, #menu li {
-    padding: 0;
     margin: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-/* Định dạng các mục menu */
-#menu li {
-    list-style: none;
-    position: relative;
-    width: 100px;
-    height: 30px;
-    padding: 0 20px;
-    background-color: black;
-    line-height: 30px;
-    cursor: pointer;
+/* 1. Header - Khối màu đen ở đầu trang */
+header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 30px 20px;
 }
 
-/* Định dạng liên kết thẻ <a> */
-#menu li a {
+header h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+/* 2. Nav - Thanh menu chứa danh sách liên kết */
+nav {
+    background-color: #ffffff;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    color: #000000;
     text-decoration: none;
-    color: white;
-    display: block;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-/* Hiệu ứng di chuột đổi màu nền */
-#menu li:hover {
-    background-color: red;
+nav a:hover {
+    text-decoration: underline;
 }
 
-/* Ẩn menu con và đặt vị trí xuất hiện bên phải */
-#menu ul ul {
-    position: absolute;
-    top: 0;
-    left: 140px;
-    visibility: hidden;
+/* Khung layout chính sử dụng Flexbox */
+.main-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
 }
 
-/* Hiển thị menu con khi rê chuột vào mục cha */
-#menu ul li:hover ul {
-    visibility: visible;
+/* 3. Section - Khối khu vực tin tức (màu xám nhạt) */
+section {
+    flex: 3;
+    background-color: #dcdcdc;
+    padding: 20px;
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+/* 4. Article - Thẻ bài viết (màu trắng nằm trong section) */
+article {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+article h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+article p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* 5. Aside - Cột phụ bên phải */
+aside {
+    flex: 1;
+    background-color: #dcdcdc;
+    padding: 20px;
+}
+
+aside h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+/* 6. Footer - Khối chân trang */
+footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* Tự động chuyển sang 1 cột trên màn hình nhỏ/điện thoại */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
 }
