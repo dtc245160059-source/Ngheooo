@@ -1,8 +1,112 @@
-/* Styling cho Phần 3 - External CSS */
-.external-heading {
-    color: crimson;
+/* Hiệu ứng cuộn mượt khi click vào mục lục */
+html {
+    scroll-behavior: smooth;
 }
 
-.external-paragraph {
-    color: teal;
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Khung chứa toàn bộ trang đọc truyện */
+.story-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* BƯỚC 4: Định dạng ảnh truyện ở đầu trang */
+.story-banner img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.story-title {
+    text-align: center;
+    color: #1a5276;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.story-author {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+/* BƯỚC 1 & BƯỚC 5: Khung mục lục chứa các thẻ <h5> */
+.table-of-contents {
+    background-color: #ebf5fb;
+    border-left: 5px solid #2980b9;
+    padding: 15px 25px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 30px;
+}
+
+.table-of-contents h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.table-of-contents ul {
+    list-style-type: square;
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* BƯỚC 3: Định dạng liên kết mục lục */
+.table-of-contents a {
+    text-decoration: none;
+    color: #2980b9;
+    transition: color 0.2s ease;
+}
+
+.table-of-contents a:hover {
+    color: #e74c3c;
+}
+
+/* BƯỚC 5: Định dạng thuộc tính cho thẻ <h5> trong mục lục */
+.table-of-contents h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 6px 0;
+    display: inline-block;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 30px 0;
+}
+
+/* BƯỚC 2: Định dạng nội dung từng chương truyện */
+.chapter {
+    margin-bottom: 40px;
+    padding-top: 10px;
+}
+
+.chapter h3 {
+    color: #d35400;
+    border-bottom: 2px solid #e67e22;
+    padding-bottom: 6px;
+    font-size: 22px;
+}
+
+.chapter p {
+    text-align: justify;
+    text-indent: 30px; /* Thụt lùi đầu dòng cho văn bản */
+    margin-bottom: 15px;
+    font-size: 16.5px;
 }
